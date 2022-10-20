@@ -4,7 +4,7 @@ const Joi = require("joi");
 const { handleValidationErrors } = require("../../middlewares");
 
 const emailRegexp =
-  /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/;
+  /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-z]+)$/;
 const phoneRegexp = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
 
 const contactSchema = new Schema(
@@ -47,9 +47,9 @@ const updateFavoriteSchema = Joi.object({
 
 contactSchema.post("save", handleValidationErrors);
 
-
-module.export = {
+module.exports = {
   Contact,
   addSchema,
-  updateFavoriteSchema,
+  updateFavoriteSchema
 };
+
