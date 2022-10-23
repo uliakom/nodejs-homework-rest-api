@@ -6,11 +6,11 @@ const { controllerWrapper } = require("../../helpers");
 
 const { addSchema, updateFavoriteSchema } = require("../../models/contacts");
 
-const { isValidId, validateBody,authenticate } = require("../../middlewares");
+const { isValidId, validateBody, authenticate } = require("../../middlewares");
 
 const router = express.Router();
 
-router.get("/", controllerWrapper(controller.getContacts));
+router.get("/", authenticate, controllerWrapper(controller.getContacts));
 
 router.get(
   "/:contactId",

@@ -3,8 +3,7 @@ const Joi = require("joi");
 
 const { handleValidationErrors } = require("../../helpers");
 
-const emailRegexp =
-  /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-z]+)$/;
+const emailRegexp = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-z]+)$/;
 const phoneRegexp = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
 
 const contactSchema = new Schema(
@@ -23,6 +22,10 @@ const contactSchema = new Schema(
     phone: {
       type: String,
       match: phoneRegexp,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "users",
     },
     favorite: {
       type: Boolean,
@@ -50,6 +53,5 @@ contactSchema.post("save", handleValidationErrors);
 module.exports = {
   Contact,
   addSchema,
-  updateFavoriteSchema
+  updateFavoriteSchema,
 };
-
