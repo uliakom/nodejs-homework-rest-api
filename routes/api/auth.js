@@ -6,7 +6,7 @@ const {
   subscriptionSchema,
 } = require("../../models/users");
 
-const { validateBody, authenticate } = require("../../middlewares");
+const { validateBody, authenticate, upload } = require("../../middlewares");
 
 const { auth: controller } = require("../../controllers");
 
@@ -27,6 +27,13 @@ router.post(
 router.get("/current", authenticate, controllerWrapper(controller.getCurrent));
 
 router.get("/logout", authenticate, controllerWrapper(controller.logout));
+
+router.patch(
+  "/avatar",
+  authenticate,
+  upload.single("avatar"),
+  controllerWrapper(controller.updateAvatar)
+);
 
 router.patch(
   "/:id/subscription",
