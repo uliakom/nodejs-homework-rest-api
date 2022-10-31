@@ -4,6 +4,7 @@ const {
   registerSchema,
   loginSchema,
   subscriptionSchema,
+  verifyEmailSchema,
 } = require("../../models/users");
 
 const { validateBody, authenticate, upload } = require("../../middlewares");
@@ -16,6 +17,14 @@ router.post(
   "/register",
   validateBody(registerSchema),
   controllerWrapper(controller.register)
+);
+
+router.get("/verify/:verificationToken", controllerWrapper(controller.verify));
+
+router.post(
+  "/verify",
+  validateBody(verifyEmailSchema),
+  controllerWrapper(controller.resendVerify)
 );
 
 router.post(
