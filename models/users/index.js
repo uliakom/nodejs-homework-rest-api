@@ -3,6 +3,7 @@ const {
   registerSchema,
   loginSchema,
   subscriptionSchema,
+  verifyEmailSchema,
 } = require("./user");
 
 module.exports = {
@@ -10,4 +11,5 @@ module.exports = {
   registerSchema,
   loginSchema,
   subscriptionSchema,
+  verifyEmailSchema,
 };
